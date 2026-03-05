@@ -1,8 +1,8 @@
 const Course = ({ course }) => {
-	let total = 0;
-	course.parts.forEach((part) => {
-		total += part.exercises;
-	});
+	const total = course.parts.reduce(
+		(accumulator, part) => accumulator + part.exercises,
+		0,
+	);
 	return (
 		<div>
 			<h1>{course.name}</h1>
