@@ -8,10 +8,14 @@ const Person = ({ name, number }) => (
 
 const App = () => {
 	const [persons, setPersons] = useState([
-		{ id: 1, name: "Arto Hellas", number: "123343434" },
+		{ name: "Arto Hellas", number: "040-123456", id: 1 },
+		{ name: "Ada Lovelace", number: "39-44-5323523", id: 2 },
+		{ name: "Dan Abramov", number: "12-43-234345", id: 3 },
+		{ name: "Mary Poppendieck", number: "39-23-6423122", id: 4 },
 	]);
 	const [newName, setNewName] = useState("");
 	const [newNumber, setNewNumber] = useState("");
+	const [newFilter, setFilter] = useState("");
 
 	const handleInputNameChange = (event) => {
 		console.log(event.target.value);
@@ -21,6 +25,11 @@ const App = () => {
 	const handleInputNumberChange = (event) => {
 		console.log(event.target.value);
 		setNewNumber(event.target.value);
+	};
+
+	const handleFilterChange = (event) => {
+		console.log(event.target.value);
+		setFilter(event.target.value);
 	};
 
 	const addPerson = (event) => {
@@ -35,12 +44,22 @@ const App = () => {
 		} else {
 			setPersons(persons.concat(personObject));
 			setNewName("");
+			setNewNumber("");
 		}
 	};
+
+	const personsToShow = persons.filter((person) =>
+		person.name.toLowerCase().includes(newFilter.toLowerCase()),
+	);
 
 	return (
 		<div>
 			<h2>Phonebook</h2>
+			<div>
+				filter shown with{" "}
+				<input value={newFilter} onChange={handleFilterChange} />
+			</div>
+			<h2>add a new</h2>
 			<form onSubmit={addPerson}>
 				<div>
 					name: <input value={newName} onChange={handleInputNameChange} />
@@ -53,9 +72,8 @@ const App = () => {
 				</div>
 			</form>
 			<h2>Numbers</h2>
-			<div>debug: {newName}</div>
 			<ul>
-				{persons.map((person) => (
+				{personsToShow.map((person) => (
 					<Person key={person.id} name={person.name} number={person.number} />
 				))}
 			</ul>
