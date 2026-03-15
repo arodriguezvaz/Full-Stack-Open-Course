@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Filter from "./components/Filter";
 import Form from "./components/Form";
 import People from "./components/People";
+import personService from "./services/persons";
 
 const App = () => {
 	const [people, setPeople] = useState([]);
@@ -12,18 +13,13 @@ const App = () => {
 
 	useEffect(() => {
 		console.log("effect");
-		axios.get("http://localhost:3001/persons").then((response) => {
-			console.log("promise fulfilled");
-			setPeople(response.data);
-		});
+		personService.getAll().then((persons) => setPeople(persons));
 	}, []);
 	const handleInputNameChange = (event) => {
-		console.log(event.target.value);
 		setNewName(event.target.value);
 	};
 
 	const handleInputNumberChange = (event) => {
-		console.log(event.target.value);
 		setNewNumber(event.target.value);
 	};
 
@@ -35,16 +31,17 @@ const App = () => {
 	const addPerson = (event) => {
 		event.preventDefault();
 		const personObject = {
-			id: people.length + 1,
 			name: newName,
 			number: newNumber,
 		};
 		if (people.some((person) => person.name === personObject.name)) {
 			alert(personObject.name + " is already added to phonebook.");
 		} else {
-			setPeople(people.concat(personObject));
-			setNewName("");
-			setNewNumber("");
+			personService.create(personObject).then((newPerson) => {
+				setPeople(people.concat(newPerson));
+				setNewName("");
+				setNewNumber("");
+			});
 		}
 	};
 
