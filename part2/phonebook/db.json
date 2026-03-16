@@ -1,11 +1,6 @@
 {
   "persons": [
     {
-      "id": "1",
-      "name": "Arto Hellas",
-      "number": "12323"
-    },
-    {
       "id": "3",
       "name": "Dan Abramov",
       "number": "12-43-234345"
@@ -19,6 +14,36 @@
       "id": "c60b",
       "name": "Arto Hellas ",
       "number": "122323213"
+    },
+    {
+      "id": "a069",
+      "name": "sasd",
+      "number": "233223"
+    },
+    {
+      "id": "e187",
+      "name": "Yo",
+      "number": "2232323"
+    },
+    {
+      "id": "36ad",
+      "name": "Tú",
+      "number": "111111"
+    },
+    {
+      "id": "d0b7",
+      "name": "Él",
+      "number": "333333"
+    },
+    {
+      "id": "4be5",
+      "name": "Lo dosh",
+      "number": "444444"
+    },
+    {
+      "id": "0712",
+      "name": "adsdasd",
+      "number": "222"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

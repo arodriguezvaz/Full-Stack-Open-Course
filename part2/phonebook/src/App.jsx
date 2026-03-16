@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Filter from "./components/Filter";
 import Form from "./components/Form";
+import Notification from "./components/Notification";
 import People from "./components/People";
 import personService from "./services/persons";
 
@@ -10,6 +11,7 @@ const App = () => {
 	const [newName, setNewName] = useState("");
 	const [newNumber, setNewNumber] = useState("");
 	const [newFilter, setFilter] = useState("");
+	const [addedMessage, setAddedMessage] = useState(null);
 
 	useEffect(() => {
 		console.log("effect");
@@ -57,6 +59,10 @@ const App = () => {
 				setPeople(people.concat(newPerson));
 				setNewName("");
 				setNewNumber("");
+				setAddedMessage(`Added ${personObject.name}`);
+				setTimeout(() => {
+					setAddedMessage(null);
+				}, 5000);
 			});
 		}
 	};
@@ -76,6 +82,7 @@ const App = () => {
 	return (
 		<div>
 			<h2>Phonebook</h2>
+			<Notification message={addedMessage} />
 			<Filter value={newFilter} onChange={handleFilterChange} />
 
 			<h2>add a new</h2>
