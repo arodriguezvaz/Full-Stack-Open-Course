@@ -17,3 +17,7 @@ part2
     phonebook
     countries
 ```
+
+## Link to the backend repository
+
+[Full-Stack-Open-Course-Backend](https://github.com/arodriguezvaz/Full-Stack-Open-Course-Backend)
